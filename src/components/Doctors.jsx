@@ -8,9 +8,6 @@ const Doctors = () => {
 
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   return (
     <Container className="p-2">
       <h3 className="display-6 mb-3" style={{ color: "rgb(166, 18, 189)" }}>
@@ -20,14 +17,14 @@ const Doctors = () => {
     <Row>
       {doctorData.map(({id , img , name , dep })=>(
           <Col key={id} xs={6} sm={4} md={3} >
-          <img src={img} alt="image"  className="img-thumbnail" onClick={()=>setShow = true } />
+          <img src={img} alt="image"  className="img-thumbnail" onClick={()=>setShow(true) } />
           <h4>{name}</h4>
           <h5>{dep}</h5>
           </Col>
       ))}
     </Row>
 
-    <AddModal />
+    <AddModal show = {show} setShow={setShow}  />
 
     </Container>
   )

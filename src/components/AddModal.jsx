@@ -1,29 +1,41 @@
-import { useState } from 'react';
+
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
 
-function AddModal() {
+function AddModal({show , setShow }) {
   
-
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button>
-
-      <Modal show={show} onHide={handleClose}>
+     
+      <Modal show={show} onHide={()=> setShow(false)} >
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Reservation for ...</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+        <Modal.Body> <Form>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Patient Name</Form.Label>
+        <Form.Control type="email" placeholder="Enter your name" />
+        <Form.Text className="text-muted">
+         
+        </Form.Text>
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Date & Time</Form.Label>
+        <Form.Control type="date" placeholder="date" />
+      </Form.Group>
+     
+      <div className='text-center '>
+      <Button variant="primary" type="submit" className='me-2'>
+        Submit
+      </Button>
+      <Button variant="success" onClick={()=> setShow(false)}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
+      </div>
+    </Form></Modal.Body>
+       
       </Modal>
     </>
   );
