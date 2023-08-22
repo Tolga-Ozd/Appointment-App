@@ -4,24 +4,33 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 
-function AddModal({show , setShow }) {
+function AddModal({show , setShow ,drName }) {
   const  [name , setName] = useState("");
   const [date, setDate] = useState(new Date().toISOString().slice(0,10))
+
+  const handleSubmit = (e)=>{
+    e.preventDefault()
+
+    setShow(false)
+    setName("")
+  }
+  
   return (
     <>
      
       <Modal show={show} onHide={()=> setShow(false)} >
         <Modal.Header closeButton>
-          <Modal.Title>Reservation for ...</Modal.Title>
+          <Modal.Title className='text-danger'>Reservation for {drName}</Modal.Title>
         </Modal.Header>
-        <Modal.Body> <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Patient Name</Form.Label>
-        <Form.Control type="email" placeholder="Enter your name"  
-        onChange={(e)=>setName(e.target.value)}
-        value={name}
-        />
-        <Form.Text className="text-muted">
+        <Modal.Body>
+           <Form onSubmit={handleSubmit}>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Patient Name</Form.Label>
+                <Form.Control type="text" placeholder="Enter your name"  
+                onChange={(e)=>setName(e.target.value)}
+                value={name}
+                />
+          <Form.Text className="text-muted">
          
         </Form.Text>
       </Form.Group>
