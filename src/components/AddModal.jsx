@@ -2,9 +2,11 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import { useState } from 'react';
 
 function AddModal({show , setShow }) {
-  
+  const  [name , setName] = useState("");
+  const [date, setDate] = useState(new Date().toISOString().slice(0,10))
   return (
     <>
      
@@ -15,7 +17,10 @@ function AddModal({show , setShow }) {
         <Modal.Body> <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Patient Name</Form.Label>
-        <Form.Control type="email" placeholder="Enter your name" />
+        <Form.Control type="email" placeholder="Enter your name"  
+        onChange={(e)=>setName(e.target.value)}
+        value={name}
+        />
         <Form.Text className="text-muted">
          
         </Form.Text>
@@ -23,7 +28,10 @@ function AddModal({show , setShow }) {
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Date & Time</Form.Label>
-        <Form.Control type="date" placeholder="date" />
+        <Form.Control type="date" placeholder="date"
+        onChange={(e)=>setDate(e.target.value)}
+        value={date}
+        />
       </Form.Group>
      
       <div className='text-center '>
