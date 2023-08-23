@@ -4,12 +4,19 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 
-function AddModal({show , setShow ,drName }) {
+function AddModal({show , setShow ,drName , apps , setApps}) {
   const  [name , setName] = useState("");
   const [date, setDate] = useState(new Date().toISOString().slice(0,10))
 
   const handleSubmit = (e)=>{
     e.preventDefault()
+    setApps([...apps , {
+      id:new Date().getTime ,
+      patient: name ,
+      day: date,
+      consulted: false,
+      doctor: drName,
+    }])
 
     setShow(false)
     setName("")
